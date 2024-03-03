@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+
+    <link rel="icon" type="image/x-icon" href="./static/image/logo.png">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="./static/css/header_main.css" />
+    <link rel="stylesheet" href="./static/css/dropdown.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" type="text/css" href="./static/css/UserProfile/common.css" />
+    <link rel="stylesheet" type="text/css" href="./static/css/UserProfile/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="./static/css/UserProfile/tailwind.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/sticky-js@1.3.0/dist/sticky.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/headroom.js@0.12.0/dist/headroom.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+
+    <style>
+        .note {
+            border: 1px solid #C5C5C5;
+            /* 添加邊框 */
+            margin: 1vh 0;
+            padding: 0;
+            height: 40vh;
+            width: 20vw;
+            display: flex;
+            flex-direction: column;
+            border-radius: 5%;
+            overflow: hidden;
+            background-color: #D9D9D9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .note p {
+            margin: 0px;
+            /* 每個段落的間距 */
+            font-family: Arial, sans-serif;
+            /* 字體 */
+        }
+
+        .note .cover-image {
+            box-sizing: border-box;
+            width: 100%;
+            height: 24vh;
+        }
+
+        .note .text-1 {
+            height: 5vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1vw;
+            background-color: #F5F5F5;
+        }
+
+        .note .text-2 {
+            height: 5vh;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            border-radius: 1vh;
+            font-size: 1vw;
+            background-color: #F5F5F5;
+        }
+
+        .note .text-3 {
+            height: 6vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #D9D9D9;
+            font-size: 21px;
+            padding: 1vh 0 1vh 0;
+        }
+
+        .note .text-4 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1vw;
+            background-color: #F5F5F5;
+        }
+
+        .note .icon-button {
+            width: 4vh;
+            height: 4vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+
+<body style="overflow: hidden">
+    <header style="display: flex;  align-items: center; background-color: #54AABB; overflow: visible;">
+
+        <div class="head"
+            style="width: 100vw; height: 10vh; display: flex; flex-direction: row;  justify-content: space-between; align-items: center; background-color: #54AABB; overflow: visible; padding-left: 5vh; padding-right: 5vh;">
+            <div style="display: flex; flex-direction: row; align-items: center; gap: 16px;">
+                <a id="icon-in-header" href="./Main.html"><img src="./static/image/logo.png" style="height: 8vh; width: 8vh;"></a>
+                <span
+                    style="color: #FFFFFF; font-size: 36px; font-weight: bolder; font-family: monospace;">MISNOTE</span>
+            </div>
+            <!-- Search Box -->
+            <div style="width: 30vw; display: flex; flex-direction: row;justify-content: center; align-items: center;">
+                <!-- <div
+              style="height: 4vh; width: auto; background-color: #F5F5F5; display: flex; justify-items: center; align-items: center; ">
+              <input type="text" placeholder="搜尋"
+                style="height: 5vh; width: 20vw; float: none; text-align: left; border-style: none;">
+            </div>
+    
+            <button
+              style="background-color: #e7e7e7; width: 5vh; height: 5vh; display: flex; justify-items: center; align-items: center;">
+              <img style="box-sizing: border-box; width: 100%; height: auto;" src="./static/icon/icons8-search-64.png">
+            </button> -->
+
+                <!-- <div class="input-group mb-1">
+                    <input id="searchInput" type="text" class="form-control" placeholder="搜尋"
+                        aria-label="Recipient's username" aria-describedby="button-addon2"
+                        onkeydown="handleKeyPress(event)">
+                    <button onclick="search(document.getElementById('searchInput').value)"
+                        class="btn btn-outline-secondary" style="background-color: #F5F5F5;" type="button"
+                        id="searchBtn">Search</button>
+                </div> -->
+
+                <!--<div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">筆記</button>
+              <div id="myDropdown" class="dropdown-content" style="box-sizing: border-box; width: 100%;">
+                <button>筆記</button>
+                <button>會員</button>
+              </div>
+            </div>-->
+            </div>
+
+            <!-- Buttons on Right -->
+            <div style=" display: flex; align-items: center; gap: 8px;">
+
+                <!-- 通知列表 -->
+                <div class="dropdown">
+                    <img class="dropbtn" onclick="notificationShow()"
+                        style="width: 48px; height: 48px; border-radius: 50%; background-color: #F5F5F5; padding: 8px;"
+                        src="./static/icon/icons8-notification-64.png">
+                    <div id="notification_panel" class="dropdown-content" style="box-sizing: border-box; width: 200px;">
+                    </div>
+                    <div id="notification_indicator" class="notification-indicator"></div>
+                </div>
+
+                <!-- 使用者資訊+登出 -->
+                <div class="dropdown">
+                    <img onclick="userFunction()" class="dropbtn" style="width: 48px; height: 48px; border-radius: 50%;"
+                        src="./static/icon/no-user.png">
+                    <div id="function_user" class="dropdown-content" style="box-sizing: border-box; width: 200%;">
+                        <button onclick="toUserProfile()">個人資訊</button>
+                        <button onclick="logout()">登出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div style="display: flex; width: 100vw; height: 90vh; background: #FFFFFF;">
+        <!--左側User Information -->
+        <div class="user-info"
+            style="width: 25vw; height: 90vh; background-color: #F5F5F5; padding: 0vh 5vh 0 5vh; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1vh;">
+            <!-- User Thumbnail -->
+            <div class="image-container"
+                style="width: 100%; height: 16vw; display: flex; justify-content: center; align-items: center; margin-top: 0;">
+                <img class="object-cover" style="width: 16vw; height: 16vw; background-color: white;"
+                    src="./static/icon/no-user.png" />
+            </div>
+            <!-- User Name -->
+            <div class="username-container"
+            style="display: flex; justify-content: center; align-items: center; font-size: 32px; font-weight: bold; color: #000000; margin-top: 5%; background:#f5f5f5; padding: 2% 3%;">
+            <h1 id="username">
+                    ？？？
+                </h1>
+            </div>
+            <!-- Data Fields -->
+            <div class="notecounts-container"
+            style="display: flex; justify-content: center; align-items: center; font-size: 22px; font-weight: bold; color: #000000; margin-top: 10%; background:#d0d0d0; border-radius: 20px; padding: 2% 4%;">
+            <h1>
+                    筆記數：<span id="notesCount">？？？</span>
+                </h1>
+            </div>
+
+
+            <!-- 2nd -->
+            <div
+                style=" width: 74.17%; height: auto; display: flex; justify-content: space-evenly; align-items: center; position: relative;">
+                <a id="btn-edit-user" href="./UserEdit.html" style="text-decoration: none; display: none; ">
+                    <button
+                        style="display: flex; flex-direction: column; align-items: center; background-color: #FFBABA; border-radius: 40px; width: 210px; height: 55px; position: relative; margin-top: 30%; justify-content: center; padding: 20px; border:#D9D9D9 1.5px solid">
+                        <h1
+                        style="display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 22px; font-family: Inter, sans-serif; color: white; text-align: center; width: 150px; height:5px;">
+                        修改資訊
+                        </h1>
+                    </button>
+                </a>
+            </div>
+        </div>
+        <!-- 右側內容 -->
+        <div class="view"
+        style=" width: 75vw; height: 90vh; display: flex; flex-direction: row; flex-wrap: wrap; overflow: auto; justify-content: center; gap: 3vw; row-gap: 3vh; padding-top: 3vh;">
+    </div>
+    </div>
+
+
+    <script type="text/javascript">
+        function getHTML(template) {
+            return template.join('\n');
+        }
+        // 初始化 AOS 和 Sticky 插件
+        AOS.init();
+        new Sticky('.sticky-effect');
+
+        // 初始化 Headroom 插件
+        const header = document.querySelector("#header");
+        if (header) {
+            const headroom = new Headroom(header);
+            headroom.init();
+        }
+
+
+        const urlParameter = new URL(window.location.toLocaleString()).searchParams;
+        const userId = urlParameter.get('Account');
+
+        const currentUser = Cookies.get('storedEmail');
+
+        // 獲取用戶資料與筆記
+        function fetchUserData(userId) {
+            $.ajax({
+                url: '/SA/api/Note.do?Account=' + userId,
+                type: 'GET',
+                success: function (data) {
+                    data = JSON.parse(data);
+
+                    const viewContainer = document.querySelector('.view');
+                    renderNotes(viewContainer, sortByTime(data['UserNote']['NoteList']));
+
+                    $('#username').text(data['UserInfo']['UserList'][0]['Name']);
+                },
+                error: function (error) {
+                    console.error('獲取用戶資訊時出錯:', error);
+                    $('#username').text('?????');
+                }
+            });
+        }
+
+        fetchUserData(userId);
+
+        async function renderNotes(container, notes) {
+            var noteHtmlArray
+
+            container.innerHTML = ''; // 清空之前的內容
+
+            if (!(notes[0].NoteID === "暫無筆記")) {
+                notes.forEach(note => {
+                    noteHtmlArray = [
+                        '<div class="note" data-note-id="' + note.NoteID + '" onclick="window.location.href=\'./NoteView.html?NoteID=' + note.NoteID + '\'">',
+                            '  <p class="text-1" style="box-sizing: border-box; width: 100%; height: 20vh;">' + note.Tag + '</p>',
+                        '  <div class="image-container" style="position: relative; width: 100%;  height: 25vh; padding-bottom: 20vh; overflow: hidden;">',
+                        '    <img class="cover-image" src="' + note.Cover + '" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">',
+                        '  </div>',
+                        '  <p class="text-3" style="box-sizing: border-box; width: 100%;">' + note.NoteName + '</p>',
+                        '  <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 0 1vw 0 1vw; background-color: #F5F5F5;">',
+                        '    <div id="list-func-btn" class="text-2" style="box-sizing: border-box; width: 60% display: flex; flex-direction: row; gap: 0.50vw; justify-content: center; align-items: center; ">',
+                        '      <img id="btn-edit" class="icon-button" data-note-id="' + note.NoteID + '" src=./static/icon/icons8-edit-64.png style="display: none; ">',
+                        '      <img id="btn-del" class="icon-button" data-note-id="' + note.NoteID + '" src=./static/icon/icons8-delete-64.png style="display: none; ">',
+                        '    </div>',
+                        '  <p class="text-4" style="box-sizing: border-box; width: 30%;">' + note.UploadTime + '</p>',
+                        '  </div>',
+                        '</div>',
+                    ];
+
+                    // container.innerHTML += getHTML(noteHtmlArray);
+
+                    container.insertAdjacentHTML('beforeend', getHTML(noteHtmlArray));
+
+                    document.querySelector('[data-note-id="' + note.NoteID + '"][id="btn-del"]').addEventListener('click', (event) => { event.stopPropagation(); delNote(note.NoteID); });
+                    document.querySelector('[data-note-id="' + note.NoteID + '"][id="btn-edit"]').addEventListener('click', (event) => { event.stopPropagation(); urlRedirect('./NoteEdit.html?NoteID=' + note.NoteID) });
+                });
+
+                $('#notesCount').text(notes.length);
+            }
+            else {
+                $('#notesCount').text(0);
+            }
+
+            // 用戶本人
+            if (IFOwner()) {
+                document.getElementById('btn-edit-user').style.display = 'block';
+                document.querySelectorAll('[id=btn-edit]').forEach((element) => { element.style.display = 'block'; });
+                document.querySelectorAll('[id=btn-del]').forEach((element) => { element.style.display = 'block'; });
+            }
+            // 管理員
+            else if (IFAdmin())
+            {
+                document.querySelectorAll('[id=btn-edit]').forEach((element) => { element.style.display = 'block'; });
+                document.querySelectorAll('[id=btn-del]').forEach((element) => { element.style.display = 'block'; });
+
+                document.getElementById('icon-in-header').href = './UserManagement.html'; 
+            }
+        }
+
+        function urlRedirect(url) {
+            window.location.href = url;
+        }
+
+        function sortByTime(notes) {
+            return notes.sort((a, b) => b.UploadTime - a.UploadTime);
+        }
+
+        /// 是否為用戶本人
+        function IFOwner() {
+            return currentUser === userId;
+        }
+
+        /// 是否為 Admin
+        function IFAdmin()
+        {
+            return document.cookie.indexOf('storedAdminEmail=') != -1; 
+        }
+
+        /// 刪除用戶筆記
+        async function delNote(noteId) {
+            await fetch('/SA/api/Note.do', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ NoteID: noteId }),
+            }).then((response) => response.json())
+                .then((data) => {
+                    console.log('%c - Delete Note:' + noteId, 'color: orange');
+
+                    document.querySelector('[data-note-id="' + noteId + '"]').remove();
+
+                    document.getElementById('notesCount').innerText = parseInt(document.getElementById('notesCount').innerText) - 1;
+
+                    window.alert(data['message']);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+
+    <script>
+        var noti_click = 0;
+        var notificationIndicator = document.getElementById('notification_indicator');
+
+        console.log('Cookie User: ' + currentUser);
+
+        function getNotifications() {
+            $.ajax({
+                type: "GET",
+                url: "/SA/api/Notification.do?Account=" + currentUser,
+                crossDomain: true,
+                cache: false,
+                dataType: 'json',
+                timeout: 5000,
+                success: function (response) {
+                    console.log(response);
+                    if (response.status === "200") {
+                        var notification_panel = '';
+
+                        $.each(response.notification.NotificationList, function () {
+                            notification_panel += addNotification(this);
+                        })
+                        $("#notification_panel").html("");
+                        $("#notification_panel").append(notification_panel);
+                    }
+                },
+                error: function () {
+                    alert("無法連線到伺服器！");
+                }
+            });
+        }
+
+        getNotifications();
+        function addNotification(noti) {
+            inner_HTML = '';
+            if (noti.NoteID === "無新通知") {
+                inner_HTML = `<div class="notification">
+                <p>無新通知</p>     
+                </div>`;
+            }
+            else {
+                notificationIndicator.style.display = 'block';
+                inner_HTML += `<div class="notification" onclick="redirectToNoteView(String(${noti.NoteID}))">
+                <div style="margin-top: 5px;">你的筆記 <span>${noti.NoteName}</span> 有新留言！</div>     
+                </div>`
+            }
+            //感覺通知可以多存一個時間??    
+            return inner_HTML;
+        }
+
+        function redirectToNoteView(noteId) {
+            // Construct the URL with the note ID as a query parameter
+            console.log(noteId);
+            const noteViewURL = `./NoteView.html?NoteID=` + String(noteId);
+
+            // 使用 window.open() 打开新的浏览器窗口或标签页
+            window.open(noteViewURL, '_blank');
+            console.log("success");
+
+        }
+
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            noti_click++;
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        function notificationShow() {
+
+            document.getElementById("notification_panel").classList.toggle("show");
+            noti_click++;
+            if (noti_click > 1) {
+                notificationIndicator.style.display = 'none';
+            }
+            console.log(noti_click)
+        }
+
+        function userFunction() {
+            document.getElementById("function_user").classList.toggle("show");
+        }
+
+        function search(newParam) {
+            if (newParam === null || newParam.trim() === "") {
+                alert("請填入關鍵字！");
+            }
+            else {
+                // 更新或添加名为 Search 的参数值
+                urlParams.set('Search', newParam);
+
+                // 构建新的 URL
+                const newURL = `${window.location.origin}${window.location.pathname}?${urlParams.toString()}`;
+
+                // 将新的 URL 设置到浏览器地址栏中
+                window.history.replaceState({}, document.title, newURL);
+
+                updateContent();
+            }
+        }
+
+        function toUserProfile() {
+            window.location.href = './UserProfile.html?Account=' + currentUser;
+        }
+
+        function logout() {
+            // 清除用戶資料
+            Cookies.remove('storedEmail');
+            Cookies.remove('storedPassword');
+            // 導回登入
+            window.location.href = './index.html';
+        }
+    </script>
+</body>
+
+</html>

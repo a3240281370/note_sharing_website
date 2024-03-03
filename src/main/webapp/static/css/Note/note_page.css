@@ -1,0 +1,369 @@
+body
+{
+  display: flex;
+  flex-direction: column;
+
+  width: 100vw;
+  height: 100vh;
+
+  margin: 0px;
+
+  overflow: hidden;
+}
+
+.desktop {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100vw;
+  height: 90vh;
+}
+
+
+.desktop .overlap {
+  position: absolute;
+  width: 540px;
+  height: 810px;
+  top: 90px;
+  left: 900px;
+  background-color: #f5f5f5;
+  border-left-width: 3px;
+  border-left-style: solid;
+  border-color: #000000;
+}
+
+.desktop .frame {
+  position: absolute;
+  width: 480px;
+  height: 633px;
+  top: 42px;
+  left: 27px;
+}
+
+.desktop .author_head {
+  background-color: #d0d0d0;
+  border-radius: 48px;
+  width: 70px;
+  height: 70px;
+  left: 0;
+  top: 0;
+}
+
+.desktop .view-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  position: relative;
+  top: 0;
+}
+
+.desktop .view {
+  position: relative;
+  width: 242px;
+  height: 48px;
+  margin-right: -2px;
+}
+
+.desktop .category {
+  position: relative;
+  width: 5vw;
+  height: 48px;
+  background-color: #d0d0d0;
+  border-radius: 60px;
+}
+
+.desktop .categorytext {
+  height: 48px;
+  text-align: center;
+  white-space: nowrap;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.desktop .dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.desktop .dropbtn {
+  width: 12vw; 
+  min-width: fit-content;
+  height: 6vh;
+  font-size: 16px;
+  text-align: center;
+  line-height: 21px;
+  white-space: nowrap;
+  position: absolute;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: 0;
+  border-radius: 60px;
+  background-color: #d0d0d0;
+  border-style: none;
+}
+
+/* Dropdown button on hover & focus */
+.desktop .dropbtn:hover, .dropbtn:focus {
+  background-color: #c0c0c0;
+}
+
+.desktop .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 240px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.desktop .dropdown-content div {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  
+}
+
+/* Change color of dropdown links on hover */
+.desktop .dropdown-content div:hover {background-color: #e0e0e0;}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.desktop .show {display:block;}
+
+.desktop .topic-text:focus {
+  outline:none;
+  border-bottom-style: solid;
+  
+}
+
+.desktop .text-wrapper-2 {
+  width: 480px;
+  left: 0;
+  font-size: 30px;
+  line-height: 28px;
+  position: relative;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: 0;
+}
+
+.desktop .group {
+  position: absolute;
+  width: 476px;
+  height: 281px;
+  top: 196px;
+  left: 3px;
+}
+
+.desktop .div-wrapper {
+  position: absolute;
+  font-size: 20px;
+  font-family: "Inter-SemiBold", Helvetica;
+  width: 474px;
+  height: 281px;
+  background-color: #d9d9d9;
+}
+
+.desktop .text-wrapper-3 {
+  width: 128px;
+  top: 117px;
+  left: 167px;
+  line-height: 28px;
+  position: absolute;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: 0;
+}
+
+.desktop .text-wrapper-4 {
+  position: absolute;
+  top: 614px;
+  left: 121px;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 17.5px;
+  white-space: nowrap;
+}
+
+.desktop .frame-2 {
+  position: absolute;
+  width: 540px;
+  height: 90px;
+  top: 717px;
+  left: -3px;
+}
+
+.desktop .desktop-button {
+  left: 24px;
+  background-color: #d9d9d9;
+  position: absolute;
+  width: 240px;
+  height: 80px;
+  top: 5px;
+  border-radius: 60px;
+}
+
+.desktop .text-wrapper-5 {
+  position: absolute;
+  width: 240px;
+  top: 25px;
+  left: 0;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 32px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 28px;
+}
+
+.desktop .desktop-button-2 {
+  left: 276px;
+  position: absolute;
+  width: 240px;
+  height: 80px;
+  top: 5px;
+  border-radius: 60px;
+}
+
+.desktop .text-wrapper-6 {
+  position: absolute;
+  width: 240px;
+  top: 25px;
+  left: 0;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 32px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 28px;
+}
+
+.header {
+  
+  position: absolute;
+  width: 100vw;
+  height: 10vh;
+  top: 0;
+  left: 0;
+}
+
+.desktop .btn_back {
+    position: absolute;
+    width: auto;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+.desktop .view-2 {
+  display: flex;
+  width: 900px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  position: relative;
+  top: 27px;
+}
+
+.desktop .group-2 {
+  position: relative;
+  width: 147.2px;
+  height: 24px;
+}
+
+.desktop .vector {
+  position: absolute;
+  width: 35px;
+  height: 24px;
+  top: 0;
+  left: 0;
+}
+
+.desktop .text-wrapper-7 {
+  top: 2px;
+  left: 45px;
+  text-align: center;
+  line-height: 21px;
+  white-space: nowrap;
+  position: absolute;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: 0;
+}
+
+.desktop .group-3 {
+  position: relative;
+  width: 142.52px;
+  height: 28px;
+}
+
+.desktop .img {
+  width: 31px;
+  position: absolute;
+  height: 28px;
+  top: 0;
+  left: 0;
+}
+
+.desktop .text-wrapper-8 {
+  top: 4px;
+  left: 41px;
+  text-align: center;
+  line-height: 21px;
+  white-space: nowrap;
+  position: absolute;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: 0;
+}
+
+.desktop .group-4 {
+  position: relative;
+  width: 140px;
+  height: 28px;
+}
+
+.desktop .vector-2 {
+  width: 28px;
+  position: absolute;
+  height: 28px;
+  top: 0;
+  left: 0;
+}
+
+.desktop .text-wrapper-9 {
+  top: 4px;
+  left: 38px;
+  text-align: center;
+  line-height: 21px;
+  white-space: nowrap;
+  position: absolute;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: 0;
+}
+
+.uploadbtn:hover{
+  background-color: #c0c0c0;
+}

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <link rel="icon" type="image/x-icon" href="./static/image/logo.png">
+
+  <link rel="stylesheet" href="globals.css" />
+  <link rel="stylesheet" href="./static/css/Note/note_page.css" />
+  <link rel="stylesheet" href="./static/css/Note/styleguide.css" />
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <div
+      style="width: 100vw; height: 10vh; padding-left: 5vh; display: flex; flex-direction: row; align-items: center; background-color: #54AABB;">
+      <button style="border: none; background-color: transparent; cursor: pointer;" onclick="window.history.back();">
+      <button style="border: none; background-color: transparent; cursor: pointer;" onclick="returnHistoryPage()">
+      <img style="width: 8vh; height: 8vh;" src="./static/icon/material-symbols-chevron-left.png"></button>
+    </div>
+  </header>
+
+  <script>
+    function returnHistoryPage() {
+      var back = window.confirm("是否放棄上傳筆記？");
+      if (back == true) {
+        window.history.back();
+      }
+    }
+  </script>
+
+  <div class="desktop">
+
+
+    <!-- 左側區域 -->
+    <div style=" width: 62.5vw; height: 90vh; display: flex; flex-direction: column;">
+      <!-- 圖片區 -->
+      <div
+        style="width: 62.5vw; height: 80vh; background-color: #F5F5F5; overflow: auto; display: flex; flex-direction: column; align-items: center;">
+        <label
+          style="width: 60px; height: 60px; position: fixed; right: 38.5vw; bottom: 10px; font-size: 40px;
+        background-color: #d9d9d9; border-radius: 90px; font-weight: bold; justify-content: center; display: flex; align-items: center;">
+          <input style="display:none;" type="file" accept="image/*" multiple onchange="loadFiles(event)">
+          +
+        </label>
+        <div id="imageContainer" style="display: flex; flex-wrap: wrap; align-items: center;"></div>
+        <!-- <script>
+          var selectedFiles = [];
+
+          var loadFiles = function (event) {
+            var imageContainer = document.getElementById('imageContainer');
+            var files = event.target.files;
+
+            for (var i = 0; i < files.length; i++) {
+              var imgContainer = document.createElement('div');
+              imgContainer.style.position = 'relative';
+              imgContainer.dataset.index = i; // Assign a unique identifier
+
+              var img = document.createElement('img');
+              img.style.width = '60vw';
+              img.style.height = 'auto';
+              img.style.margin = '5px';
+              img.src = URL.createObjectURL(files[i]);
+
+              var deleteButton = document.createElement('button');
+              deleteButton.innerHTML = 'x';
+              deleteButton.style.position = 'absolute';
+              deleteButton.style.top = '5px';
+              deleteButton.style.right = '5px';
+              deleteButton.style.cursor = 'pointer';
+              deleteButton.style.backgroundColor = "#d9d9d9";
+
+              deleteButton.onclick = function () {
+                var index = this.parentElement.dataset.index;
+                imgContainer.remove(); // Remove the image container
+                selectedFiles.splice(index, 1); // Remove the corresponding file from the array
+                console.log(selectedFiles);
+              };
+
+              img.onload = function () {
+                URL.revokeObjectURL(this.src);
+              };
+
+              imgContainer.appendChild(img);
+              imgContainer.appendChild(deleteButton);
+              imageContainer.appendChild(imgContainer);
+
+              // Store file object
+              selectedFiles.push(files[i]);
+            }
+            console.log(selectedFiles);
+          };
+        </script> -->
+        <script>
+          var selectedFiles = [];
+
+          var loadFiles = function (event) {
+            var imageContainer = document.getElementById('imageContainer');
+            var files = event.target.files;
+
+            for (var i = 0; i < files.length; i++) {
+              var imgContainer = document.createElement('div');
+              imgContainer.style.position = 'relative';
+              imgContainer.dataset.index = selectedFiles.length + i; // Assign a unique identifier
+
+              var img = document.createElement('img');
+              img.style.width = '60vw';
+              img.style.height = 'auto';
+              img.style.margin = '5px';
+              img.src = URL.createObjectURL(files[i]);
+
+              var deleteButton = document.createElement('button');
+              deleteButton.innerHTML = 'x';
+              deleteButton.style.position = 'absolute';
+              deleteButton.style.top = '5px';
+              deleteButton.style.right = '5px';
+              deleteButton.style.cursor = 'pointer';
+              deleteButton.style.backgroundColor = "#d9d9d9";
+
+              // 使用函數工廠為每個按鈕創建點擊處理程序
+              deleteButton.onclick = createDeleteHandler(imgContainer, files[i]);
+
+              img.onload = function () {
+                URL.revokeObjectURL(this.src);
+              };
+
+              imgContainer.appendChild(img);
+              imgContainer.appendChild(deleteButton);
+              imageContainer.appendChild(imgContainer);
+
+              // Store file object
+              selectedFiles.push(files[i]);
+            }
+            console.log(selectedFiles);
+          };
+
+          // 函數工廠，創建並返回點擊處理程序
+          function createDeleteHandler(container, file) {
+            return function () {
+              var index = container.dataset.index;
+              console.log(index);
+              container.remove(); // Remove the image container
+              selectedFiles.splice(index, 1); // Remove the corresponding file from the array
+              console.log(selectedFiles);
+              // 更新剩餘按鈕的索引
+              updateButtonIndexes();
+            };
+          }
+
+          // 更新剩餘按鈕的索引
+          function updateButtonIndexes() {
+            var buttons = document.querySelectorAll('#imageContainer button');
+            buttons.forEach(function (button, index) {
+              button.parentElement.dataset.index = index;
+            });
+          }
+        </script>
+      </div>
+      <!-- 數據欄 -->
+      <div
+        style="width: 62.5vw; height: 10vh; display: flex; flex-direction: row; justify-content: center; align-items: center; background-color: #F5F5F5;">
+      </div>
+    </div>
+
+    <!-- 右側資訊 -->
+    <div
+      style="width: 37.5vw; height: 90vh; background-color: #f5f5f5; border-left: 3px solid #000000; display: flex; flex-direction: column; justify-content: space-between; align-items: center; overflow-x: hidden;">
+      <!-- 筆記資訊 -->
+      <div
+        style="width: 37.5vw; height: 70vh;  display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div class="view-wrapper">
+          <div class="view" style="overflow: visible;">
+            <div class="dropdown">
+              <input type="button" id="dropbtn" onclick="myFunction()" class="dropbtn" value="標籤選單">
+              <div id="myDropdown" class="dropdown-content">
+                <div onclick="select()">行銷學</div>
+                <div onclick="select()">系統分析與設計</div>
+                <div onclick="select()">組織行為</div>
+                <div onclick="select()">作業研究</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-check form-switch" style="margin-left:auto; right: 40px; position: relative;">
+          <input class="form-check-input" type="checkbox" id="public_btn" checked>
+          <label class="form-check-label" for="public_btnd">公開</label>
+        </div>
+
+        <textarea class="topic-text" style="width: 32vw; height: 35px; background-color: #f5f5f5; margin-top: 4vh; font-size: 20px; font-weight: bold; color: #000000; letter-spacing: 0; resize: none; max-lines: 1; border-style:none; border-bottom-style: solid;
+        text-align: left; " id="note_topic" name="note_topic" placeholder="筆記名稱*" value=""></textarea>
+
+        <textarea class="topic-text" id="note_info" name="note_info"
+          style="width: 32vw; height: 32vh; resize: none; background-color: #f5f5f5;  resize: none; margin-top: 4vh; margin-bottom: 4vh; border-style:none;"
+          placeholder="筆記簡介"></textarea>
+      </div>
+
+      <!-- 功能按鈕 -->
+      <div style="display: flex; flex-direction: row; gap: 8px; height: 15vh; align-items: center;">
+        <button class="uploadbtn"
+          style="width: 12vw; height: 6vh; border-radius: 2vw; font-size: 16px; color: #ffffff; background-color: #52b6ba; font-weight: bold; border-style: none;"
+          id="upload">上傳筆記</button>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+
+<script>
+  var isPublic = 1;
+
+  /* When the user clicks on the button,
+  toggle between hiding and showing the dropdown content */
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+
+  //get the selected value of dropdown content
+  function select() {
+    var myDropdown = document.getElementById('myDropdown');
+    myDropdown.addEventListener('click', function (e) {
+      if (e.target.tagName.toLowerCase() === 'div') {
+        console.log(e.target.textContent);
+        document.getElementById('dropbtn').value = e.target.textContent;
+      }
+
+    }, false);
+  }
+
+  function public() {
+    if (document.getElementById('public_btn').checked) {
+      // Public (1)  
+      isPublic = 1;
+    }
+    else {
+      // Private (0)
+      isPublic = 0;
+    }
+  }
+</script>
+<script type="text/javascript">
+
+  const currentUser = Cookies.get('storedEmail');
+
+  console.log('Cookie User: ' + currentUser);
+
+  $(document).ready(function () {
+    // 處理表單點擊事件
+    var $form = $('#upload');
+    $form.click(function () {
+      public();
+      upload();
+    });
+
+    function upload() { //筆記上傳
+      var Tag = $('#dropbtn').val();
+      var NoteName = $('#note_topic').val();
+      var NoteDescription = $('#note_info').val();
+      var Public = isPublic;
+      var Account = currentUser;
+
+      console.log(Tag, NoteName, NoteDescription, Public, Account);
+
+      if (NoteName === null || NoteName.trim() === "") { //檢查noteName是否填寫
+        alert("需填寫筆記名稱！");
+      }
+      else {
+        // 將資料組成JSON格式
+        var data_object = {
+          "NoteName": NoteName,
+          "NoteDescription": NoteDescription,
+          "Tag": Tag,
+          "Public": Public,
+          "Account": Account
+        };
+      };
+
+      // 將JSON格式轉換成字串
+      var data_string = JSON.stringify(data_object);
+
+      // 發出POST的AJAX請求
+      $.ajax({
+        type: "POST",
+        url: "api/Note.do", // Replace with your JSON API endpoint
+        data: JSON.stringify(data_object),
+        contentType: 'application/json',
+        success: function (response) {
+          var res = jQuery.parseJSON(response);
+          console.log(res);
+          console.log(res.status);
+          if (res.status === "200") {
+            console.log("JSON data sent successfully");
+            var NoteID = res.response.NoteID;
+            console.log(NoteID);
+
+            var formData = new FormData();
+            formData.append('NoteID', NoteID);
+            // Append files to the FormData
+            for (var i = 0; i < selectedFiles.length; i++) {
+              formData.append('file' + i, selectedFiles[i]);
+            }
+
+            $.ajax({
+              type: "POST",
+              url: "api/Pic.do", // Replace with your Multipart API endpoint
+              data: formData,
+              contentType: false,
+              processData: false,
+              success: function (response) {
+                console.log(response);
+                if (response.status === "200") {
+                  console.log("Multipart data sent successfully");
+                  // Handle success if needed
+                }
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error sending multipart data");
+                console.log("jqXHR:", jqXHR);
+                console.log("textStatus:", textStatus);
+                console.log("errorThrown:", errorThrown);
+                // Handle error if needed
+              }
+            });
+            window.alert("筆記上傳成功！\n即將導回個人主頁");
+            window.location.href = './UserProfile.html?Account=' + currentUser;
+            // Handle success if needed
+          }
+          else {
+            console.log("shit");
+          }
+        },
+        error: function () {
+            window.alert('筆記上傳失敗！');
+            console.error("Error sending JSON data");
+            console.log(data_object);
+            // Handle error if needed
+        }
+      });
+    }
+  });
+</script>
+
+</html>

@@ -1,0 +1,40 @@
+:root {
+    --primary: rgba(23, 161, 250, 1);
+    --secondary: rgba(122, 97, 255, 1);
+    --tertiary: rgba(255, 0, 255, 1);
+    --black: rgba(10, 41, 66, 1);
+    --graydefault: rgba(99, 107, 120, 1);
+    --graylight: rgba(161, 166, 173, 1);
+    --graylighter: rgba(209, 212, 214, 1);
+    --display-font-family: "Inter-Black", Helvetica;
+    --display-font-weight: 900;
+    --display-font-size: 48px;
+    --display-letter-spacing: 0px;
+    --display-line-height: 72px;
+    --display-font-style: normal;
+    --headline-font-family: "Inter-ExtraBold", Helvetica;
+    --headline-font-weight: 800;
+    --headline-font-size: 32px;
+    --headline-letter-spacing: 0px;
+    --headline-line-height: 48px;
+    --headline-font-style: normal;
+    --title-font-family: "Inter-Bold", Helvetica;
+    --title-font-weight: 700;
+    --title-font-size: 24px;
+    --title-letter-spacing: 0px;
+    --title-line-height: 36px;
+    --title-font-style: normal;
+    --body-font-family: "Inter-Regular", Helvetica;
+    --body-font-weight: 400;
+    --body-font-size: 16px;
+    --body-letter-spacing: 0px;
+    --body-line-height: 24px;
+    --body-font-style: normal;
+    --small-font-family: "Inter-Regular", Helvetica;
+    --small-font-weight: 400;
+    --small-font-size: 14px;
+    --small-letter-spacing: 0px;
+    --small-line-height: 24px;
+    --small-font-style: normal;
+  }
+  

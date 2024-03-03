@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+
+    <link rel="icon" type="image/x-icon" href="./static/image/logo.png">
+
+    <link rel="stylesheet" href="./static/css/Note/note_page0.css" />
+    <link rel="stylesheet" href="./static/css/Note/styleguide.css" />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+
+    <!-- <script src="./static/js/Note/NoteView.js"></script> -->
+</head>
+
+<body>
+    <header>
+        <div
+            style="width: 100vw; height: 10vh; padding-left: 5vh; display: flex; flex-direction: row; align-items: center; background-color: #54AABB;">
+            <button style="border: none; background-color: transparent; cursor: pointer;"
+                onclick="window.location.href='./Main.html'">
+                <img style="width: 8vh; height: 8vh;" src="./static/icon/material-symbols-chevron-left.png"></button>
+        </div>
+    </header>
+
+    <div class="desktop">
+
+        <!-- 左側區域 -->
+        <div
+            style="display: flex; flex-direction: column; width: 62.5vw; height: 90vh; justify-content: center; align-items: center;">
+            <!-- 圖片區 -->
+
+            <div
+                style="width: max-content; height: 90vh; display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 1vw;">
+
+                <div
+                    style="height: 36vw;  display: flex; flex-direction: column; justify-content: space-between; align-items: center;">
+
+                    <div style="width: 50vw; height: 36vw; display: flex; align-items: center; justify-content: center;">
+                        <!-- Displayed Picture -->
+                        <a>
+                            <img id="pic-displayed" style="max-width: 50vw; max-height: 36vw; width: auto; height: auto;" src="" />
+                        </a>
+                    </div>
+
+                    <!-- Page Display -->
+                    <div
+                        style="width: 16vw; height: 2vw; padding: 0.50vw; background-color: #F5F5F5; border-radius: 8vw; display: flex; justify-content: center; align-items: center;">
+                        <span>第 <span id="note-current-page">P</span> 頁／共 <span id="note-total-page">T</span> 頁</span>
+                    </div>
+                </div>
+
+
+                <div
+                    style="display: flex; flex-direction: column; justify-content: space-between; height: 36vw; align-items: center; background-color: #F5F5F5;">
+                    <button id="btn-prev-pic" onclick="prevPicture(); "
+                        style="cursor: pointer; box-sizing: border-box; width: 100%; height: 3vw; border-style: none; outline: none">
+                        <img style="box-sizing: border-box; height: 100%;" src="./static/icon/icons8-chevron-up-64.png">
+                    </button>
+                    <!-- Prev Picture -->
+                    <a>
+                        <img id="pic-prev" style="width: 6vw; height: 8vw; filter: brightness(0.70); object-fit: cover;" src="">
+                    </a>
+                    <!-- Selected Picture -->
+                    <a>
+                        <img id="pic-selected" style="width: 6vw; height: 8vw; border: 1vh double #000000; object-fit: cover;" src="">
+                    </a>
+                    <!-- Next Picture -->
+                    <a>
+                        <img id="pic-next" style="width: 6vw; height: 8vw; filter: brightness(0.70); object-fit: cover;" src="">
+                    </a>
+                    <button id="btn-next-pic" onclick="nextPicture(); "
+                        style="cursor: pointer; box-sizing: border-box; width: 100%; height: 3vw; outline: none; border-style: none;">
+                        <img style="box-sizing: border-box; height: 100%;"
+                            src="./static/icon/icons8-chevron-down-64.png">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右側資訊 -->
+        <div
+            style="width: 37.5vw; height: 90vh; background-color: #F5F5F5; border-left: 3px solid #000000; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow-x: hidden;">
+            <!--作者資訊+標籤-->
+            <div
+                style="box-sizing: border-box; width: 85%;  height: auto; display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                <div style="width: auto; display: flex; justify-content: center; align-items: center; gap: 1vw; ">
+                    <img id="author-pic" style="width: 4vw; height: 4vw; border-radius: 50%;"
+                        src="./static/icon/no-user.png">
+                    <a id="author-profile" href="" style="text-decoration: none; color: #4169E1">
+                        <h1 id="user-name" style="padding-left: 5px;" class="author_name">作者名稱</h1>
+                    </a>
+                </div>
+                <div class="category">
+                    <div id="note-tag" class="categorytext">標籤</div>
+                </div>
+            </div>
+
+            <!-- 筆記資訊 -->
+            <div
+                style="width: 37.5vw; height: auto;  display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <div id="note-name"
+                    style="width: 32vw; height: fit-content; margin-top: 4vh; font-size: 20px; font-weight: bold; color: #000000; letter-spacing: 0; resize: none; max-lines: 1; text-align: left;">
+                    筆記名稱
+                </div>
+
+                <div id="note-description"
+                    style="width: 32vw; height: 32vh; resize: none; background-color: #f5f5f5; resize: none; margin-top: 4vh; margin-bottom: 4vh;">
+
+                    筆記簡介</div>
+
+                <span>更新時間: <span id="note-upload-time">yyyy / MM / DD</span></span>
+
+                <!-- 數據欄 -->
+                <div
+                    style="width: 62.5vw; height: 10vh; display: flex; flex-direction: row; justify-content: center; align-items: center; background-color: #F5F5F5; gap: 1vw;">
+                    <!-- <div class="group-2">
+                        <img class="vector" src="./static/icon/simple_eye_icon.png" />
+                        <div class="text-wrapper-7">999,999</div>
+                    </div> -->
+                    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                        <img src="./static/icon/icons8-comments-64.png" style="width: 3vw; height: 3vw;" />
+                        <div id="note-comment-count" style="width: 4vw; font-size: 4vh; text-align: right;">999</div>
+                    </div>
+                    <div
+                        style="width: 10vw; display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                        <img id="icon-like" src="./static/icon/icons8-favorite-64.png" onclick="favorite();"
+                            style="width: 3vw; height: 3vw; cursor: pointer;" />
+                        <div id="note-like-count" style="width: 8vw; font-size: 4vh; text-align: right;">999,999</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 留言區 -->
+    <div
+        style="width: 100vw; height: fit-content; display: flex; flex-direction: column; align-items: center; margin: 3vh">
+        <!-- 留言輸入框 -->
+        <div style="width: 80vw; height: fit-content; display: flex; flex-direction: column; ">
+            <div
+                style="box-sizing: border-box; width: 100%; display: flex; flex-direction: row; justify-content: center;">
+                <!-- 留言內容 -->
+                <textarea id="comment-input"
+                    style="padding-top: 15px; padding-left: 18px; border-radius: 50px; box-sizing: border-box; width: 90%; height: 8vh; resize: none; font-size: 21px;"
+                    placeholder="留言區"></textarea>
+                <!-- 上傳按鈕 -->
+                <button style="background-color: #ffffff; box-sizing: border-box; width: 8%; cursor: pointer; border-style: none; " onclick="addComment();">
+                    <img style="box-sizing: border-box; height: 6.5vh;" src="./static/icon/icons8-arrow-r-64.png">
+                </button>
+            </div>
+        </div>
+
+        <!-- 留言紀錄 -->
+        <div id="comment-list" style="width: 80vw; display: flex; flex-direction: column; margin: 1vh; gap: 1vh;"></div>
+    </div>
+
+</body>
+<script>
+    function changeImage(imageSrc) {
+        document.getElementById("mainImage").style.transform = "scale(0)";
+        setTimeout(function () {
+            document.getElementById("mainImage").style.backgroundImage = `url('${imageSrc}')`;
+            document.getElementById("mainImage").style.transform = "scale(1)";
+        }, 300);
+    }
+</script>
+
+<script>
+    // 開發模式
+    const api_url = '/SA/api/';
+
+    /* -------------------------------------------------------------------------- */
+    /*                                  main code                                 */
+    /* -------------------------------------------------------------------------- */
+
+    // get noteId stored in URL Parameter
+    const urlParameter = new URL(window.location.toLocaleString()).searchParams;
+    const noteId = urlParameter.get('NoteID');
+
+    console.log('URL Param: ' + noteId);
+
+    // userId in Cookie
+    const currentUser = Cookies.get('storedEmail');
+
+    // 圖片路徑
+    // var image_root = '../FileStorage/Note/' + noteId;
+
+    // 圖片列表
+    var image_list = [];
+    // 圖片頁數
+    var current_page = 1;
+    // 筆記作者
+    var authorId = '';
+
+    /* ---------------------------------- Trans --------------------------------- */
+
+    /// 從 String 陣列改為 HTML
+    function getHTML(template) {
+        return template.join('\n');
+    }
+
+    /* --------------------------------- Onload --------------------------------- */
+
+    /// 頁面載入後執行
+    window.onload = function () {
+        getNote(noteId);
+    }
+
+    /// 利用 noteId 取得筆記資訊與圖片 
+    async function getNote(noteId) {
+        // === 讀取筆記資訊
+        var jsonObject;
+
+        /*
+        Input: 
+            筆記 ID
+        Output: 
+            筆記名稱
+            筆記標籤
+            筆記敘述
+            筆記時間
+            筆記按讚數
+    
+            筆記圖片名稱陣列
+    
+            作者用戶 ID
+        */
+        await fetch(api_url + 'Note.do?NoteID=' + noteId + '&Account=' + currentUser, {
+            mode: 'cors',
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                jsonObject = {
+                    'note_id': data['NoteInfo']['NoteData'][0]['NoteID'],
+                    'note_name': data['NoteInfo']['NoteData'][0]['NoteName'],
+                    'note_tag': data['NoteInfo']['NoteData'][0]['Tag'],
+                    'note_description': data['NoteInfo']['NoteData'][0]['NoteDescription'],
+                    'upload_time': data['NoteInfo']['NoteData'][0]['UploadTime'],
+                    'like': data['NoteInfo']['NoteData'][0]['Like'],
+                    'good': data['NoteInfo']['NoteData'][0]['good'],
+                    'note_pic': data['PicUrl']['PicList'],
+                    'author_id': data['NoteInfo']['NoteData'][0]['Account'],
+                    'author_name': data['NoteInfo']['NoteData'][0]['Name'],
+                }
+
+                console.log('%c # Note: \n' + JSON.stringify(jsonObject), 'color: green');
+
+                commentList = data.Comment.CommentList.map((comment) => ({
+                    // 留言資訊
+                    'comment_id': comment['CommentID'],
+                    'content': comment['Content'],
+                    'time': comment['Time'],
+                    'commenter_id': comment['Account'],
+                    'commenter_name': comment['Name'],
+                }));
+
+                console.log('%c # Comment: \n' + JSON.stringify(commentList), 'color: green');
+
+            })
+            .catch((error) => {
+                // Handle errors
+                console.error('Error:', error);
+            });
+
+        // 儲存圖片列表
+        // image_list = [''].concat(jsonObject['note_pic']);
+        image_list = [''].concat(jsonObject.note_pic.map(pic => pic.PicURL));
+
+        console.log('%c # Pic: \n' + image_list, 'color: green');
+
+        // 儲存作者 ID
+        authorId = jsonObject['author_id'];
+
+        // 更新頁面內容
+        document.getElementById('note-name').innerHTML = jsonObject['note_name'];
+        document.getElementById('note-description').innerHTML = jsonObject['note_description'];
+        document.getElementById('note-tag').innerHTML = jsonObject['note_tag'];
+        document.getElementById('note-upload-time').innerHTML = jsonObject['upload_time'];
+        document.getElementById('note-like-count').innerHTML = jsonObject['like'];
+
+        // 用戶按過讚
+        if (jsonObject['good'] == 1) {
+            document.getElementById('icon-like').src = "./static/icon/icons8-favorite-filled-64.png";
+        }
+        // 用戶沒按讚
+        else {
+            document.getElementById('icon-like').src = "./static/icon/icons8-favorite-64.png";
+
+        }
+
+        // 頁數初始化
+        document.getElementById('note-current-page').innerHTML = current_page.toString();
+        document.getElementById('note-total-page').innerHTML = (image_list.length - 1).toString();
+
+        // === 更新頁面內容
+        document.getElementById('pic-displayed').src = image_list[current_page];
+
+        // 只有封面
+        if (jsonObject['note_pic'].length === 1) {
+            document.getElementById('pic-prev').style.visibility = 'hidden';
+            document.getElementById('pic-selected').src = image_list[current_page];
+            document.getElementById('pic-next').style.visibility = 'hidden';
+        }
+        // 更多圖片
+        else {
+            document.getElementById('pic-prev').style.visibility = 'hidden';
+            document.getElementById('pic-selected').src = image_list[current_page];
+            document.getElementById('pic-next').src = image_list[current_page + 1];
+        }
+
+        // 更新作者內容
+        document.getElementById('user-name').innerHTML = jsonObject['author_name'];
+        document.getElementById('author-profile').href = "./UserProfile.html?Account=" + authorId;
+
+        // 新增留言資料
+        buildComment(commentList);
+    }
+
+    /// 是否為留言者
+    function IFCommentAdmin(commenterId) {
+        // 留言者本人
+        return currentUser === commenterId;
+    }
+
+    /// 是否為 Admin
+    function IFAdmin() {
+        return document.cookie.indexOf('storedAdminEmail=') != -1; 
+    }
+
+    /// 利用 [JSONArray] commentList 取得相關留言
+    function buildComment(commentList) {
+        // 迴圈建立子元素
+        commentList.forEach((comment) => {
+            var htmlElement;
+
+            if (!(comment.comment_id === '尚無留言'))
+            {
+            if (IFCommentAdmin(comment['commenter_id']) == true) {
+                htmlElement =
+                    [
+                    '<div data-comment-id="' + comment['comment_id'] + '" style="box-sizing: border-box; width: 78vw; display: flex; flex-direction: column; background-color: #ededed; border-radius: 30px;">',
+                        '  <div style="padding: 1vh 5vh 1vh 5vh; font-size: 24px; resize: none; height: auto" disabled>' + comment['content'] + '</div>',
+
+                        '  <div style="padding: 1vh 5vh 1vh 5vh; display: flex; flex-direction: row; justify-content: space-between; border-style: none;">',
+                        '    <a href="./UserProfile.html?Account=' + comment['commenter_id'] + '" style="text-decoration: none; color: #4169E1; ">' + comment['commenter_name'] + '</a>',
+                        // '<span>' + comment['commenter_name'] + '</span>',
+                        '    <div style="display: flex; flex-direction: row; justify-content: flex-end; align-items: center; gap: 1vw">',
+                        '      <button class="btn-del" id="btn-del" data-comment-id="' + comment['comment_id'] + '" style="display: block; border-radius: 20px; ">Delete</button>',
+                        '      <span>' + comment['time'] + '</span>',
+                        '    </div>',
+                        '  </div>',
+                        '</div>',
+                    ];
+            }
+            else {
+                htmlElement =
+                    [
+                        '<div data-comment-id="' + comment['comment_id'] + '" style="box-sizing: border-box; width: 78vw; display: flex; flex-direction: column; background-color: #ededed; border-radius: 30px;">',
+                        '  <div style="padding: 1vh 5vh 1vh 5vh; font-size: 24px; resize: none; height: auto" disabled>' + comment['content'] + '</div>',
+
+                        '  <div style="padding: 1vh 5vh 1vh 5vh; display: flex; flex-direction: row; justify-content: space-between; border-style: none;">',
+                        '    <a href="./UserProfile.html?Account=' + comment['commenter_id'] + '" style="text-decoration: none; color: #4169E1; ">' + comment['commenter_name'] + '</a>',
+                        // '<span>' + comment['commenter_name'] + '</span>',
+                        '    <div style="display: flex; flex-direction: row; justify-content: flex-end; align-items: center; gap: 1vw">',
+                        '      <button class="btn-del" id="btn-del" data-comment-id="' + comment['comment_id'] + '" style="display: none; border-radius: 20px;">Delete</button>',
+                        '      <span>' + comment['time'] + '</span>',
+                        '    </div>',
+                        '  </div>',
+                        '</div>',
+                    ];
+            }
+            document.getElementById('comment-list').innerHTML += getHTML(htmlElement);}
+        });
+
+        // 更新留言數
+        if (commentList[0].comment_id === '尚無留言')
+        {
+            document.getElementById('note-comment-count').innerHTML = "0";
+        }
+        else
+        {
+        document.getElementById('note-comment-count').innerHTML = commentList.length;
+        }
+
+        // EventListener -- 刪除按鈕
+        document.getElementById('comment-list').addEventListener('click', function (event) {
+            if (event.target.classList.contains('btn-del')) {
+                delComment(event.target.getAttribute('data-comment-id'));
+            }
+        });
+
+        console.log(IFAdmin());
+
+        // 管理員
+        if (IFAdmin()) {
+            document.querySelectorAll('[id=btn-del]').forEach((element) => { element.style.display = 'block'; });
+        }
+    }
+
+    /* ------------------------- Picture Page Controller ------------------------ */
+
+    /// 上一頁
+    function prevPicture() {
+        if (current_page > 1) {
+            current_page -= 1; console.log('%c prev-page => ' + current_page, 'color: blue'); changeGallery(); document.getElementById('pic-next').style.visibility = 'visible';
+
+            if (current_page == 1) {
+                // hide <pic-prev>
+                document.getElementById('pic-prev').style.visibility = 'hidden';
+            }
+        }
+        else {
+            console.log('%c 🛑 1st-page', 'color: red');
+        }
+    }
+
+    /// 下一頁
+    function nextPicture() {
+        if (current_page == image_list.length - 1) {
+            console.log('%c 🛑 last-page', 'color: red');
+        }
+        else {
+            current_page += 1; console.log('%c next-page => ' + current_page, 'color: blue'); changeGallery(); document.getElementById('pic-prev').style.visibility = 'visible';
+
+            if (current_page == image_list.length - 1) {
+                // hide <pic-next>
+                document.getElementById('pic-next').style.visibility = 'hidden';
+            }
+        }
+    }
+
+    /// 修改顯示圖片
+    function changeGallery() {
+        document.getElementById('note-current-page').innerHTML = current_page.toString();
+
+        document.getElementById('pic-displayed').src = image_list[current_page];
+
+        document.getElementById('pic-prev').src = image_list[current_page - 1];
+        document.getElementById('pic-selected').src = image_list[current_page];
+        document.getElementById('pic-next').src = image_list[current_page + 1];
+    }
+
+    /* ----------------------------- User Behaviour ----------------------------- */
+
+    /// 新增並上傳留言
+    async function addComment() {
+        // 留言內容
+        var content = document.getElementById('comment-input').value;
+
+        // 無輸入 --> Do Nothing
+        if (content == '') {
+            document.getElementById('comment-input').placeholder = '! 請輸入文字';
+        }
+        // 有輸入 --> Update DB and Page
+        else {
+            // 清空紀錄
+            document.getElementById('comment-input').value = '';
+
+            var jsonObject;
+
+            // 留言的必須值
+            var commentReq = {
+                'NoteID': noteId,
+                'Account': currentUser,
+                'Content': content,
+            }
+
+            /*
+            寫入留言到 DB
+            ------------
+            Input: 
+                筆記 ID
+                留言者用戶 ID
+                留言內容
+            */
+            await fetch(api_url + '/Comment.do', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(commentReq),
+            }).then((response) => response.json())
+                .then((data) => {
+                    console.log('%c + New Comment\n' + JSON.stringify(commentReq), 'color: orange');
+
+                    jsonObject =
+                    {
+                        // 留言 mysql 生成資訊
+                        'comment_id': data['response']['CommentID'],
+                        'time': data['response']['Time'],
+                        'commenter_name': data['response']['Name'],
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+
+            var htmlElement =
+                [
+                '<div data-comment-id="' + jsonObject['comment_id'] + '" style="box-sizing: border-box; width: 78vw; display: flex; flex-direction: column; background-color: #ededed; border-radius: 30px;">',
+                        '  <div style="padding: 1vh 5vh 1vh 5vh; font-size: 24px; resize: none; height: auto" disabled>' + commentReq['Content'] + '</div>',
+
+                        '  <div style="padding: 1vh 5vh 1vh 5vh; display: flex; flex-direction: row; justify-content: space-between; border-style: none;">',
+                        '    <a href="./UserProfile.html?Account=' + commentReq['Account'] + '" style="text-decoration: none; color: #4169E1; ">' + jsonObject['commenter_name'] + '</a>',
+                        // '<span>' + comment['commenter_name'] + '</span>',
+                        '    <div style="display: flex; flex-direction: row; justify-content: flex-end; align-items: center; gap: 1vw">',
+                        '      <button class="btn-del" id="btn-del" data-comment-id="' + jsonObject['comment_id'] + '" style="display: block; border-radius: 20px;">Delete</button>',
+                        '      <span>' + jsonObject['time'] + '</span>',
+                        '    </div>',
+                        '  </div>',
+                        '</div>',
+                
+                // '<div data-comment-id="' + jsonObject['comment_id'] + '" style="box-sizing: border-box; width: 100%; display: flex; flex-direction: column; background-color: #D9D9D9;">',
+                //     '  <textarea style="font-size: 24px; resize: none; height: auto" disabled>' + commentReq['Content'] + '</textarea>',
+
+                //     '  <div style="padding: 1vh 5vh 1vh 5vh; display: flex; flex-direction: row; justify-content: space-between;">',
+                //     '    <a href="./UserProfile.html?Account=' + commentReq['Account'] + '" style="text-decoration: none; color: #4169E1; ">' + jsonObject['commenter_name'] + '</a>',
+                //     // '<span>' + jsonObject['commenter_name'] + '</span>',
+                //     '    <div style="display: flex; flex-direction: row; justify-content: flex-end; align-items: center; gap: 1vw">',
+                //     '      <button class="btn-del" data-comment-id="' + jsonObject['comment_id'] + '">Delete</button>',
+                //     '      <span>' + jsonObject['time'] + '</span>',
+                //     '    </div>',
+                //     '  </div>',
+                //     '</div>',
+                ];
+
+            // add to beginning
+            document.getElementById('comment-list').insertAdjacentHTML('afterbegin', getHTML(htmlElement));
+
+            // document.querySelector('[data-comment-id="' + jsonObject['comment_id'] + '"]').addEventListener('click', function () { delComment(jsonObject['comment_id']); });
+            
+            document.getElementById('note-comment-count').innerHTML = parseInt(document.getElementById('note-comment-count').innerHTML) +1;
+            // // 強制刷新
+            // window.location.reload();
+        }
+    }
+
+    // 刪除留言
+    async function delComment(comment_id) {
+        await fetch(api_url + '/Comment.do', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ CommentID: comment_id, }),
+        }).then(() => {
+            console.log('%c - Delete Comment:' + comment_id, 'color: orange');
+
+            document.querySelector('[data-comment-id="' + comment_id + '"]').remove();
+
+            document.getElementById('note-comment-count').innerHTML = parseInt(document.getElementById('note-comment-count').innerHTML) -1;
+
+        })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+    /// 用戶按 / 收回讚
+    async function favorite() {
+        // 用戶沒按過讚
+        if (document.getElementById('icon-like').getAttribute('src') == "./static/icon/icons8-favorite-64.png") {
+            document.getElementById('icon-like').src = "./static/icon/icons8-favorite-filled-64.png";
+            document.getElementById('note-like-count').innerHTML = (parseInt(document.getElementById('note-like-count').innerText) + 1).toString();
+
+            action = 'add';
+        }
+        // 用戶已按過讚
+        else {
+            document.getElementById('icon-like').src = "./static/icon/icons8-favorite-64.png";
+            document.getElementById('note-like-count').innerHTML = (parseInt(document.getElementById('note-like-count').innerText) - 1).toString();
+
+            action = 'minus';
+        }
+
+        console.log(JSON.stringify({ note_id: noteId, user_id: currentUser, Like: 1 }));
+
+        /*
+        更新按讚用戶清單
+        ---------------
+        Input: 
+            筆記 ID
+            按讚用戶 ID
+        */
+        await fetch(api_url + '/Note.do', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ NoteID: noteId, Account: currentUser, Like: 1 })
+        })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+</script>
+
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+
+    <link rel="icon" type="image/x-icon" href="./static/image/logo.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" type="text/css" href="./static/css/Login/common.css" />
+    <link rel="stylesheet" type="text/css" href="./static/css/Login/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="./static/css/Login/tailwind.css" />
+    <link rel="stylesheet" type="text/css" href="./static/css/Login/slider.css" />
+    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/sticky-js@1.3.0/dist/sticky.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/headroom.js@0.12.0/dist/headroom.min.js"></script>
+
+    <!-- 在這之前，確保引入了 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+
+</head>
+
+<body class="flex-column w-full overflow-hidden">
+    <div class="login flex flex-col bg-white w-auto h-auto relative">
+        <div class="w-auto h-auto flex relative">
+            <!-- 風格圖片 -->
+            <div class="flex flex-col w-[68.75vw] h-[100vh] relative min-w-0">
+                <img class="w-[68.75vw] h-full object-cover min-w-0" src="./static/image/park_lake_bridge.png"
+                    alt="alt text" />
+
+                <!-- Shade -->
+                <div class="w-[68.75vw] h-full absolute inset-0" style="background-color: #000000; opacity: 0.10;">
+                </div>
+            </div>
+            <!-- 登入介面 -->
+            <div
+                class="bg-white w-[31.25vw] h-[100vh] overflow-scroll flex flex-col justify-between items-center relative min-w-[31.25vw]">
+                <div class="w-[78.95%] h-auto flex flex-col items-center relative mt-12">
+                    <div class="w-full h-auto flex justify-center gap-x-2.5 relative">
+                        <img class="object-cover min-w-0" src="./static/image/logo.png"
+                            style="width: 16vh; height: 16vh;" />
+                    </div>
+                    <div class="w-full h-auto flex flex-col items-center relative mt-12">
+                        <div class="rounded-lg w-full h-auto flex flex-col items-center relative">
+                            <h3
+                                class="flex items-center font-semibold text-xl font-Poppins text-[rgb(26,26,26)] w-auto h-auto min-w-0">
+                                Sign In
+                            </h3>
+                            <div class="w-full h-auto flex flex-col items-center relative mt-8" id="result">
+                                <!-- Input Form -->
+                                <div class="w-full h-auto flex flex-col items-center relative">
+                                    <div class="w-full h-auto flex flex-col items-center relative">
+                                        <div class="flex flex-col w-full h-auto relative">
+                                            <div
+                                                class="font-normal text-[12px] leading-none font-BIZUDGothic text-[rgb(51,51,51)] tracking-[0.3px] w-auto h-auto mx-4">
+                                                用戶
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="flex flex-col bg-neutral-100 rounded-md outline outline-[rgb(217,217,217)] outline-[0.5px] outline-offset-[-0.5px] w-full h-auto relative mt-2">
+                                            <div
+                                                class="rounded-md w-auto h-auto flex justify-between items-center content-start gap-x-2 relative">
+                                                <div
+                                                    class="flex flex-col w-full h-auto relative min-w-0 mt-3.5 mb-3.5 ml-4 mr-4">
+                                                    <div class="flex flex-col w-auto h-auto relative">
+                                                        <input type="email" placeholder="電子信箱" id="member_email"
+                                                            class="flex items-end font-normal text-[18px] leading-[1.33] font-Roboto text-[rgb(128,128,128)] w-auto h-auto bg-none input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-full h-auto flex flex-col items-center relative mt-4">
+                                        <div class="flex flex-col w-full h-auto relative">
+                                            <div
+                                                class="font-normal text-[12px] leading-none font-BIZUDGothic text-[rgb(51,51,51)] tracking-[0.3px] w-auto h-auto mx-4">
+                                                密碼
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="flex flex-col bg-neutral-100 rounded-md outline outline-[rgb(217,217,217)] outline-[0.5px] outline-offset-[-0.5px] w-full h-auto relative mt-2">
+                                            <div
+                                                class="rounded-md w-auto h-auto flex justify-between items-center content-start gap-x-2 relative">
+                                                <div
+                                                    class="flex flex-col w-full h-auto relative min-w-0 mt-3.5 mb-3.5 ml-4">
+                                                    <div class="flex flex-col w-auto h-auto relative">
+                                                        <input type="password" placeholder="帳戶密碼" id="member_password"
+                                                            class="flex items-end font-normal text-[18px] leading-[1.33] font-Roboto text-[rgb(128,128,128)] w-auto h-auto input">
+                                                    </div>
+                                                </div>
+                                                <!-- 顯示密碼 -->
+                                                <button
+                                                    class="w-8 h-8 p-0 bg-transparent border-none focus:outline-none mr-4"
+                                                    onclick="togglePasswordVisibility()">
+                                                    <img class="w-full h-full object-cover"
+                                                        src="./static/icon/simple_eye_icon.png" alt="alt text"
+                                                        id="eyeIcon" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="relative w-full h-[32px] object-cover min-w-0 button my-2" id="submitbutton"
+                            style="color: #FFFFFF;">登　入</button>
+                        <!-- Divider -->
+                        <div class="bg-neutral-100 relative w-full my-2" style="border-top: 1px solid;"></div>
+                        <!-- 註冊跳轉 -->
+                        <div class="justify-center flex-wrap w-full h-auto flex relative">
+                            <div
+                                class="font-normal text-[12px] leading-[1.66] font-BIZUDGothic text-[rgb(26,26,26)] tracking-[0.2px] w-auto h-auto min-w-0">
+                                Dont have an account?
+                            </div>
+                            <div
+                                class="flex justify-end font-normal text-[12px] leading-[1.66] font-BIZUDGothic text-[rgb(0,122,255)] text-right tracking-[0.2px] w-auto h-auto ml-2">
+                                <a href="Register.html"><span>Sign up now</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        // 檢查是否有存儲的 cookie
+        var storedEmail = getCookie("storedEmail");
+        var storedPassword = getCookie("storedPassword");
+
+        console.log(storedEmail); 
+        console.log(storedPassword); 
+
+        // 如果有存儲的 email，將其填充到對應 input
+        if (storedEmail) {
+            document.getElementById("member_email").value = storedEmail;
+        }
+
+        // 如果有存儲的 password，將其填充到對應 input
+        if (storedPassword) {
+            document.getElementById("member_password").value = storedPassword;
+        }
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("member_password");
+            var eyeIcon = document.getElementById("eyeIcon");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.src = "./static/icon/simple_eye_icon.png"; // Change the source to your hide password icon
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.src = "./static/icon/simple_eye_icon.png"; // Change the source to your show password icon
+            }
+        }
+
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        $(document).ready(function () {
+            AOS.init();
+            new Sticky('.sticky-effect');
+
+            // 監聽 checkbox 變化事件
+            $('#rememberMeCheckbox').change(function () {
+                // 獲取 checkbox 的狀態
+                var isChecked = $(this).is(':checked');
+
+                // 根據 checkbox 的狀態執行相應的操作
+                if (isChecked) {
+                    // checkbox 被選中的操作
+                    setCookie("rememberMe", "true", 365); // 存儲 cookie，有效期 365 天
+                    console.log('Checkbox is checked. Cookie stored.');
+                } else {
+                    // checkbox 未被選中的操作
+                    setCookie("rememberMe", "false", -1); // 刪除 cookie
+                    console.log('Checkbox is unchecked. Cookie removed.');
+                }
+            });
+
+            // 處理表單點擊事件
+            var $form = $('#submitbutton');
+            $form.click(function () {
+                console.log('Submit button clicked!');
+                validateAndSubmit();
+            });
+
+            function validateAndSubmit() {
+                var emailInput = $('#member_email').val();
+                var passwordInput = $('#member_password').val();
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+                var Name="none";
+
+                if (!emailRegex.test(emailInput)) {
+                    alert('請輸入有效的電子郵件。');
+                    return;
+                }
+
+                else if (!passwordRegex.test(passwordInput)) {
+                    alert('請輸入有效的密碼。密碼需要包含至少一個字母、一個數字，並且長度至少為8。');
+                    return;
+                }
+                else{
+					        // 將資料組成JSON格式
+                            var data_object = {
+                                "Account": emailInput,
+                                "Password": passwordInput,
+                                "Name":Name
+                            };
+
+                            // 將JSON格式轉換成字串
+                            var data_string = JSON.stringify(data_object);
+                            console.log(data_string);
+				}
+
+                submitForm(data_string); // Call submitForm with email and password
+            }
+
+            function submitForm(q) {
+                $.ajax({
+                    type: 'POST',
+                    url: "/SA/api/User.do", // Replace with your actual API endpoint
+                    data: q,
+                    success: function (response) {
+						var res=jQuery.parseJSON(response);
+                        if (res.status==="200") {
+                            // Set cookies here upon successful login
+                            setCookie('storedEmail', JSON.parse(q).Account, 365);
+                            setCookie('storedPassword', JSON.parse(q).Password, 365);
+
+                            // console.log(JSON.parse(q)); 
+                            // console.log(JSON.parse(q).Account); console.log(JSON.parse(q).Password); 
+
+                            alert("您已登入成功！");
+                            window.location.href = "Main.html";
+                        } else {
+							alert(res.message);
+                        }
+                    },
+                    error: function () {
+                        alert("無法連線到伺服器。");
+                        $('#member_email').val('');
+                        $('#member_password').val('');
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>

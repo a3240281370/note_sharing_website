@@ -1,0 +1,54 @@
+/* CSS 部分 */
+.slider-container {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 24px;
+}
+
+.slider-checkbox {
+    display: none;
+}
+
+.slider-label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    z-index: 1; /* 調整 z-index，使 Slider 位於上層 */
+}
+
+.slider-label:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color:white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider-checkbox:checked + .slider-label {
+    background-color: #2196F3;
+}
+
+.slider-checkbox:focus + .slider-label {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+.slider-checkbox:checked + .slider-label:before {
+    -webkit-transform: translateX(36px);
+    -ms-transform: translateX(36px);
+    transform: translateX(36px);
+}
+
+.slider-text {
+    margin-left: -90px; /* 調整 "記住我" 文字和 Slider 之間的間距 */
+    color: #262626; /* 調整文字顏色，適應原先的設計 */

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <link rel="icon" type="image/x-icon" href="./static/image/logo.png">
+
+  <link rel="stylesheet" href="./static/css/header_main.css" />
+
+  <link rel="stylesheet" href="./static/css/Main/style.css" />
+  <link rel="stylesheet" href="./static/css/Main/styleguide.css" />
+  <link rel="stylesheet" href="./static/css/dropdown.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+
+  <style>
+    .note {
+      border: 1px solid #C5C5C5;
+      /* 添加邊框 */
+      margin: 1vh 0;
+      padding: 0;
+      height: 40vh;
+      width: 20vw;
+      display: flex;
+      flex-direction: column;
+      border-radius: 5%;
+      overflow: hidden;
+      background-color: #D9D9D9;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .note p {
+      margin: 0px;
+      /* 每個段落的間距 */
+      font-family: Arial, sans-serif;
+      /* 字體 */
+    }
+
+    .note .cover-image {
+      box-sizing: border-box;
+      width: 100%;
+      height: 24vh;
+    }
+
+    .note .text-1 {
+      height: 5vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1vw;
+      background-color: #F5F5F5;
+    }
+
+    .note .text-2 {
+      height: 5vh;
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      border-radius: 1vh;
+      font-size: 1vw;
+      background-color: #F5F5F5;
+    }
+
+    .note .text-3 {
+      height: 6vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #D9D9D9;
+      font-size: 21px;
+      padding: 1vh 0 1vh 0;
+    }
+
+    .note .text-4 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1vw;
+      background-color: #F5F5F5;
+    }
+  </style>
+</head>
+
+<body>
+  <header style="display: flex;  align-items: center; background-color: #54AABB; overflow: visible;">
+
+    <div class="head"
+      style="width: 100vw; height: 10vh; display: flex; flex-direction: row;  justify-content: space-between; align-items: center; background-color: #54AABB; overflow: visible; padding-left: 5vh; padding-right: 5vh;">
+      <div style="display: flex; flex-direction: row; align-items: center; gap: 16px;">
+        <a href="./Main.html"><img src="./static/image/logo.png" style="height: 8vh; width: 8vh;"></a>
+        <span style="color: #FFFFFF; font-size: 36px; font-weight: bolder; font-family: monospace;">MISNOTE</span>
+      </div>
+      <!-- Search Box -->
+      <div style="width: 30vw; display: flex; flex-direction: row;justify-content: center; align-items: center;">
+        <!-- <div
+          style="height: 4vh; width: auto; background-color: #F5F5F5; display: flex; justify-items: center; align-items: center; ">
+          <input type="text" placeholder="搜尋"
+            style="height: 5vh; width: 20vw; float: none; text-align: left; border-style: none;">
+        </div>
+
+        <button
+          style="background-color: #e7e7e7; width: 5vh; height: 5vh; display: flex; justify-items: center; align-items: center;">
+          <img style="box-sizing: border-box; width: 100%; height: auto;" src="./static/icon/icons8-search-64.png">
+        </button> -->
+
+        <div class="input-group mb-1">
+          <input id="searchInput" type="text" class="form-control" placeholder="搜尋" aria-label="Recipient's username"
+            aria-describedby="button-addon2" onkeydown="handleKeyPress(event)">
+          <button onclick="search(document.getElementById('searchInput').value)" class="btn btn-outline-secondary"
+            style="background-color: #F5F5F5;" type="button" id="searchBtn">Search</button>
+        </div>
+
+        <!--<div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn">筆記</button>
+          <div id="myDropdown" class="dropdown-content" style="box-sizing: border-box; width: 100%;">
+            <button>筆記</button>
+            <button>會員</button>
+          </div>
+        </div>-->
+      </div>
+
+      <!-- Buttons on Right -->
+      <div style=" display: flex; align-items: center; gap: 8px;">
+
+        <!-- 通知列表 -->
+        <div class="dropdown">
+          <img class="dropbtn" onclick="notificationShow()"
+            style="width: 48px; height: 48px; border-radius: 50%; background-color: #F5F5F5; padding: 8px;"
+            src="./static/icon/icons8-notification-64.png">
+          <div id="notification_panel" class="dropdown-content" style="box-sizing: border-box; width: 200px;">
+          </div>
+          <div id="notification_indicator" class="notification-indicator"></div>
+        </div>
+
+        <!-- 使用者資訊+登出 -->
+        <div class="dropdown">
+
+          <!-- User Thumbnail -->
+          <img onclick="userFunction()" class="dropbtn" style="width: 48px; height: 48px; border-radius: 50%;"
+            src="./static/icon/no-user.png">
+
+          <div id="function_user" class="dropdown-content" style="box-sizing: border-box; width: 200%;">
+            <button onclick="toUserProfile()">個人資訊</button>
+            <button onclick="logout()">登出</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    var noti_click = 0;
+    var notificationIndicator = document.getElementById('notification_indicator');
+
+    const currentUser = Cookies.get('storedEmail');
+
+    console.log('Cookie User: ' + currentUser);
+
+    function getNotifications() {
+      $.ajax({
+        type: "GET",
+        url: "/SA/api/Notification.do?Account=" + currentUser,
+        crossDomain: true,
+        cache: false,
+        dataType: 'json',
+        timeout: 5000,
+        success: function (response) {
+          console.log(response);
+          if (response.status === "200") {
+            var notification_panel = '';
+
+            $.each(response.notification.NotificationList, function () {
+              notification_panel += addNotification(this);
+            })
+            $("#notification_panel").html("");
+            $("#notification_panel").append(notification_panel);
+          }
+        },
+        error: function () {
+          alert("無法連線到伺服器！");
+        }
+      });
+    }
+
+    getNotifications();
+    function addNotification(noti) {
+      inner_HTML = '';
+      if (noti.NoteID === "無新通知") {
+        inner_HTML = `<div class="notification">
+                <p>無新通知</p>     
+                </div>`;
+      }
+      else {
+        notificationIndicator.style.display = 'block';
+        inner_HTML += `<div class="notification" onclick="redirectToNoteView(String(${noti.NoteID}))">
+                <div style="margin-top: 5px;">你的筆記 <span>${noti.NoteName}</span> 有新留言！</div>     
+                </div>`
+      }
+      //感覺通知可以多存一個時間??    
+      return inner_HTML;
+    }
+
+    function redirectToNoteView(noteId) {
+      // Construct the URL with the note ID as a query parameter
+      console.log(noteId);
+      const noteViewURL = `./NoteView.html?NoteID=` + String(noteId);
+
+      // 使用 window.open() 打开新的浏览器窗口或标签页
+      window.open(noteViewURL, '_blank');
+      console.log("success");
+
+    }
+
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+        noti_click++;
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+
+    function notificationShow() {
+
+      document.getElementById("notification_panel").classList.toggle("show");
+      noti_click++;
+      if (noti_click > 1) {
+        notificationIndicator.style.display = 'none';
+      }
+      console.log(noti_click)
+    }
+
+    function userFunction() {
+      document.getElementById("function_user").classList.toggle("show");
+    }
+
+    function search(newParam) {
+      if (newParam === null || newParam.trim() === "") {
+        alert("請填入關鍵字！");
+      }
+      else {
+        // 更新或添加名为 Search 的参数值
+        urlParams.set('Search', newParam);
+
+        // 构建新的 URL
+        const newURL = `${window.location.origin}${window.location.pathname}?${urlParams.toString()}`;
+
+        // 将新的 URL 设置到浏览器地址栏中
+        window.history.replaceState({}, document.title, newURL);
+
+        updateContent();
+      }
+    }
+
+    function toUserProfile() {
+      window.location.href = './UserProfile.html?Account=' + currentUser;
+    }
+
+    function logout() {
+      // 清除用戶資料
+      Cookies.remove('storedEmail');
+      Cookies.remove('storedPassword');
+      // 導回登入
+      window.location.href = './index.html';
+    }
+  </script>
+
+  <div class="desktop">
+
+    <!-- 左側選單 -->
+    <div
+      style="display: flex; flex-direction: column; width: 20vw; height: 90vh; background-color: #F5F5F5; padding-left: 5vh; padding-right: 5vh; gap: 2vh;">
+
+      <!-- 1nd -->
+      <div style="display: flex; flex-direction: column; width: 100%; height: auto; gap: 1vh; margin-top: 2vh;">
+        <div style="font-weight: bold; color: #000000; font-size: 21px;"># 排序方式</div>
+        <div class="radio-box">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="sortingOption" id="latestRadio" checked
+              onchange="updateSortAndContent(0)">
+            <label class="form-check-label" for="latestRadio">
+              最新
+            </label>
+          </div>
+        </div>
+        <div class="radio-box">
+          <input class="form-check-input" type="radio" name="sortingOption" id="mostLikedRadio"
+            onchange="updateSortAndContent(1)">
+          <label class="form-check-label" for="mostLikedRadio">
+            最多人按讚
+          </label>
+        </div>
+
+      </div>
+
+      <!-- 2nd -->
+      <div style="display: flex; flex-direction: column; width: 100%; height: auto; gap: 1vh; margin-top: 2vh;">
+        <div style=" font-weight: bold; color: #000000; font-size: 21px;"># 筆記年份</div>
+        <div class="custom-dropdown">
+          <select id="year-dropdown" class="year-dropdown" onchange="updateSortAndContent(value)">
+            <option value="0">-</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+          </select>
+
+        </div>
+      </div>
+
+      <!-- 3rd -->
+      <div
+      style="position: absolute; align-items: center; width: 100%; align-items: center; left: 14%; top: 90%; border-style: none;">
+
+        <button class="circle_shortcut_button" style="border-style: none;" onclick="redirectToNoteUpload()"><img
+            src="./static/icon/icons8-add-properties-64.png" /> </button>
+        <!-- <button class="circle_shortcut_button"><img src="./static/icon/icons8-favorite-64.png" /> </button> -->
+
+      </div>
+    </div>
+
+    <!-- 右側內容 -->
+    <div class="view" id="note_panel"
+    style=" width: 80vw; height: 90vh; display: flex; flex-direction: row; flex-wrap: wrap; overflow: auto; justify-content: center; gap: 3vw; row-gap: 3vh; padding-top: 3vh;">
+  </div>
+
+    <script type="text/javascript">
+      // 获取 URL 中的参数
+      const urlParams = new URLSearchParams(window.location.search);
+
+      function getAllNote() {
+        $.ajax({
+          type: "GET",
+          url: "/SA/api/Note.do?Sort=0",
+          crossDomain: true,
+          cache: false,
+          dataType: 'json',
+          timeout: 5000,
+          success: function (response) {
+            console.log(response);
+            if (response.status == 200) {
+              var note_panel = '';
+              console.log(response.response);
+              $.each(response.response.NoteList, function () {
+                note_panel += addNote(this);
+              })
+
+              $("#note_panel").append(note_panel);
+            }
+          },
+          error: function () {
+            alert("無法連線到伺服器！");
+          }
+        });
+      }
+
+      getAllNote();
+
+      function addNote(note) {
+        inner_HTML = '';
+        if (note.NoteID === "查無結果") {
+          alert(note.NoteID);
+          inner_HTML = '<p>查無結果</p>';
+        }
+        else {
+          inner_HTML +=
+          `<div style="height: 40vh;" class="note" onclick="redirectToNoteView('${note.NoteID}')">
+                <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 0 1vw 0 1vw; background-color: #F5F5F5; height: 10vh;">
+                <!-- 讚數 -->
+                <div style="width: 10vw; display: flex; flex-direction: row;; align-items: center;">
+                  <div id="note-like-count" style="text-align: left; font-size: 20px">♡ </div>
+                  <div id="note-like-count" style="width: 8vw; text-align: left;">${note.Like}</div>
+                </div>
+                <!-- 標籤名稱 -->
+                <p class="text-1" style="box-sizing: border-box; width: 100%;">#${note.Tag}</p>
+              </div>
+              <!-- 圖片預覽 -- 我覺得如果能利用迴圈改圖檔名稱就可行 -->
+              <div class="image-container" style="position: relative; width: 100%; padding-bottom: 21.5vh; overflow: hidden;">
+                            <img class="cover-image" src="${note.Cover}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                          </div>
+
+              <!-- 筆記名稱 -->
+              <p class="text-3" style="box-sizing: border-box; width: 100%;">${note.NoteName}</p>
+              <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 0 1vw 0 1vw; background-color: #F5F5F5;">
+                <!-- 作者名稱 -->
+                <p class="text-2" style="box-sizing: border-box; width: 60%;">${note.Name}</p>
+                <!-- 最新日期 -->
+                <p class="text-4" style="box-sizing: border-box; width: 30%;">${note.UploadTime.toLocaleString()}</p>
+              </div>
+            </div>`;
+        }
+
+
+        return inner_HTML;
+      }
+
+
+
+      function redirectToNoteUpload() {
+        // Construct the URL with the sort ID as a query parameter
+        const noteViewURL = `./NoteUpload.html`;
+
+        // Refresh to the index.html page
+        window.location.href = noteViewURL;
+      }
+
+      function handleKeyPress(event) {
+        // 判断按下的键是否是 Enter 键（键码为 13）
+        if (event.key === 'Enter') {
+          // 调用搜索函数
+          search(document.getElementById('searchInput').value);
+        }
+      }
+
+      function updateSortAndContent(newParam) {
+
+        if (newParam == 0) {
+          document.getElementById('latestRadio').checked = true;
+          document.getElementById('year-dropdown').value = 0;
+        }
+        else if (newParam == 1) {
+          document.getElementById('year-dropdown').value = 0;
+        }
+        else if (newParam != 0 && newParam != 1) {
+          document.getElementById('latestRadio').checked = false;
+          document.getElementById('mostLikedRadio').checked = false;
+        }
+        // 更新或添加名为 SortCondition 的参数值
+        urlParams.set('Sort', newParam);
+
+        // 构建新的 URL
+        const newURL = `${window.location.origin}${window.location.pathname}?${urlParams.toString()}`;
+
+        // 将新的 URL 设置到浏览器地址栏中
+        window.history.replaceState({}, document.title, newURL);
+
+        updateContent();
+
+      }
+
+      function updateContent() {
+        // 获取目标 DIV
+        const note_panel = document.getElementById('note_panel');
+        console.log(urlParams.toString());
+
+        if (!urlParams.has('Sort')) {
+          urlParams.set('Sort', 0);
+          console.log(urlParams.toString());
+        }
+
+        $.ajax({
+          type: "GET",
+          url: "/SA/api/Note.do?" + urlParams.toString(),
+          crossDomain: true,
+          cache: false,
+          dataType: 'json',
+          timeout: 5000,
+          success: function (response) {
+            console.log(response);
+            if (response.status == 200) {
+              var note_panel = '';
+              console.log(response.response);
+              $.each(response.response.NoteList, function () {
+                note_panel += addNote(this);
+              })
+
+              $("#note_panel").html("");
+              $("#note_panel").append(note_panel);
+            }
+          },
+          error: function () {
+            alert("無法連線到伺服器！");
+          }
+        });
+      }
+
+    </script>
+</body>
+
+</html>

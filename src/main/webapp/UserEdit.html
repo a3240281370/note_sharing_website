@@ -1,0 +1,508 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+
+    <link rel="icon" type="image/x-icon" href="./static/image/logo.png">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+    <link rel="stylesheet" href="./static/css/header_main.css" />
+    <link rel="stylesheet" href="./static/css/dropdown.css" />
+
+    <link rel="stylesheet" type="text/css" href="./static/css/UserEdit/common.css" />
+    <link rel="stylesheet" type="text/css" href="./static/css/UserEdit/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="./static/css/UserEdit/tailwind.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/sticky-js@1.3.0/dist/sticky.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/headroom.js@0.12.0/dist/headroom.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    
+    <style>
+        input[type="text"],
+        input[type="password"],
+        input[type="name"] {
+            border: 1.5px solid gray;
+            /* 較淺色的邊框 */
+            padding: 5px;
+            /* 較多的內邊距 */
+            margin-top: 5px;
+            /* 上邊距 */
+            margin-bottom: 5px;
+            /* 下邊距 */
+            border-radius: 8px;
+            /* 圓角 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* 細微的陰影 */
+            font-size: 14px;
+            /* 字體大小 */
+            color: #333;
+            /* 字體顏色 */
+            background-color: white;
+            /* 淺灰色背景 */
+            font-family: 'Inter', sans-serif;
+        }
+
+        input:focus {
+            border-color: black;
+            /* 焦點時的邊框顏色 */
+            box-shadow: 0 0 3px #54AABB;
+            /* 焦點時的陰影 */
+        }
+
+        .view {
+            width: 75%;
+            max-height: 90vh;
+            overflow-y: hidden;
+            background-color: #D9D9D9;
+            padding: 10%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .rounded-box {
+            background-color: white;
+            /* 白色背景 */
+            padding: 30px;
+            /* 內邊距 */
+            border-radius: 15px;
+            /* 圓角 */
+            width: 50%;
+            flex: 1;
+            margin-right: auto;
+            /* 水平居中 */
+            margin-left: auto;
+            /* 水平居中 */
+
+        }
+
+        .section-header {
+            font-size: 24px;
+            color: #000000;
+            margin-bottom: 22px;
+            padding: 4px;
+            width: 200px;
+            background: rgb(113, 196, 200);
+            border-radius: 20px;
+            text-align: center;
+            display: block;
+            /* 讓標題作為區塊元素顯示 */
+            margin-left: auto;
+            /* 自動邊距 */
+            margin-right: auto;
+            /* 自動邊距 */
+        }
+
+        .section-header,
+        .font-normal {
+            font-weight: bold;
+            color: #2e2f2f;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .button_img_container {
+            display: flex;
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            margin-top: 8px;
+        }
+
+        .button_img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 8px;
+            border: 1.8px solid black;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            /* This creates the circular shape */
+            width: 48px;
+            /* Adjust size as needed */
+            height: 48px;
+            /* Adjust size as needed */
+            background-color: white;
+            /* Adjust background color as needed */
+        }
+
+        .button_img img {
+            width: 80%;
+            height: auto;
+        }
+
+        .button_img:active {
+            transform: scale(0.95);
+            /* Shrink the button when clicked */
+        }
+    </style>
+</head>
+
+
+<body>
+    <header style="display: flex;  align-items: center; background-color: #54AABB; overflow: visible;">
+
+        <div class="head"
+            style="width: 100vw; height: 10vh; display: flex; flex-direction: row;  justify-content: space-between; align-items: center; background-color: #54AABB; overflow: visible; padding-left: 5vh; padding-right: 5vh;">
+            <div style="display: flex; flex-direction: row; align-items: center; gap: 16px;">
+                <a id="icon-in-header" href="./Main.html"><img src="./static/image/logo.png"
+                        style="height: 8vh; width: 8vh;"></a>
+                <span
+                    style="color: #FFFFFF; font-size: 36px; font-weight: bolder; font-family: monospace;">MISNOTE</span>
+            </div>
+            <!-- Search Box -->
+            <div style="width: 30vw; display: flex; flex-direction: row;justify-content: center; align-items: center;">
+                <!-- <div
+              style="height: 4vh; width: auto; background-color: #F5F5F5; display: flex; justify-items: center; align-items: center; ">
+              <input type="text" placeholder="搜尋"
+                style="height: 5vh; width: 20vw; float: none; text-align: left; border-style: none;">
+            </div>
+    
+            <button
+              style="background-color: #e7e7e7; width: 5vh; height: 5vh; display: flex; justify-items: center; align-items: center;">
+              <img style="box-sizing: border-box; width: 100%; height: auto;" src="./static/icon/icons8-search-64.png">
+            </button> -->
+
+                <!-- <div class="input-group mb-1">
+                    <input id="searchInput" type="text" class="form-control" placeholder="搜尋"
+                        aria-label="Recipient's username" aria-describedby="button-addon2"
+                        onkeydown="handleKeyPress(event)">
+                    <button onclick="search(document.getElementById('searchInput').value)"
+                        class="btn btn-outline-secondary" style="background-color: #F5F5F5;" type="button"
+                        id="searchBtn">Search</button>
+                </div> -->
+
+                <!--<div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">筆記</button>
+              <div id="myDropdown" class="dropdown-content" style="box-sizing: border-box; width: 100%;">
+                <button>筆記</button>
+                <button>會員</button>
+              </div>
+            </div>-->
+            </div>
+
+            <!-- Buttons on Right -->
+            <div style=" display: flex; align-items: center; gap: 8px;">
+
+                <!-- 通知列表 -->
+                <div class="dropdown">
+                    <img class="dropbtn" onclick="notificationShow()"
+                        style="width: 48px; height: 48px; border-radius: 50%; background-color: #F5F5F5; padding: 8px;"
+                        src="./static/icon/icons8-notification-64.png">
+                    <div id="notification_panel" class="dropdown-content" style="box-sizing: border-box; width: 200px;">
+                    </div>
+                    <div id="notification_indicator" class="notification-indicator"></div>
+                </div>
+
+                <!-- 使用者資訊+登出 -->
+                <div class="dropdown">
+                    <img onclick="userFunction()" class="dropbtn" style="width: 48px; height: 48px; border-radius: 50%;"
+                        src="./static/icon/no-user.png">
+                    <div id="function_user" class="dropdown-content" style="box-sizing: border-box; width: 200%;">
+                        <button onclick="toUserProfile()">個人資訊</button>
+                        <button onclick="logout()">登出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div style="display: flex; width: 100%; height: 90vh; background: yellow;">
+        <!--左側User Information -->
+        <div class="user-info"
+            style="width: 25vw; height: 90vh; background-color: #F5F5F5; padding: 0vh 5vh 0 5vh; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1vh;">
+            <!-- User Thumbnail -->
+            <div class="image-container"
+                style="width: 100%; height: 16vw; display: flex; justify-content: center; align-items: center; margin-top: 0;">
+                <img class="object-cover" style="width: 16vw; height: 16vw; background-color: white;"
+                    src="./static/icon/no-user.png" />
+            </div>
+            <!-- User Name -->
+            <div class="username-container"
+                style="display: flex; justify-content: center; align-items: center; font-size: 32px; font-weight: bold; color: #000000; margin-top: 5%; background: #f5f5f5; border-radius: 20px;padding: 2% 3%;">
+                <h1 id="username">
+                    ？？？
+                </h1>
+            </div>
+            <!-- Data Fields -->
+            <!-- <div class="notecounts-container"
+                style="display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold; color: #000000; margin-top: 10%; background:rgb(113,196,200); border-radius: 20px; padding: 2% 4%;">
+                <h1>
+                    筆記數：<span id="notesCount">？？？</span>
+                </h1>
+            </div> -->
+
+
+            <!-- 2nd -->
+            <div
+                style=" width: 74.17%; height: auto; display: flex; justify-content: space-evenly; align-items: center; position: relative;">
+                <a id="btn-edit-user" href="UserEdit.html" style="text-decoration: none; display: none; ">
+                    <button
+                        style="display: flex; flex-direction: column; align-items: center; background-color: #FFBABA; border-radius: 40px; width: 210px; height: 55px; position: relative; margin-top: 30%; justify-content: center; padding: 20px; border:#D9D9D9 1.5px solid">
+                        <h1
+                            style="display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 24px; font-family: Inter, sans-serif; color: white; text-align: center; width: 150px; height:5px;">
+                            修改資訊
+                        </h1>
+                    </button>
+                </a>
+            </div>
+        </div>
+        <!-- 右側內容 -->
+        <div class="view">
+            <div style="display: flex; flex-direction: row; gap: 30px;flex: 1;">
+                <!-- 修改區塊 -->
+                <div class="rounded-box">
+                    <h2 class="section-header">修改資料</h2>
+
+                    <!-- 名稱 -->
+                    <div class="flex flex-col w-full h-auto relative">
+                        <div
+                            class="font-normal text-[12px] leading-none font-BIZUDGothic text-[rgb(51,51,51)] tracking-[0.3px] w-auto h-auto mx-4">
+                            名稱:
+                        </div>
+                    </div>
+                    <div class="flex flex-col bg-neutral-100 rounded-md relative">
+                        <div class="rounded-md w-auto flex justify-between items-center content-start gap-x-2 relative">
+                            <div class="flex flex-col w-full relative min-w-0 ml-4 mr-4">
+                                <div class="flex flex-col w-auto relative">
+                                    <input type="text" placeholder="請輸入名稱" id="new_name" name="member_name"
+                                        class="flex items-end font-normal text-[18px] leading-[1.33] font-Roboto text-[rgb(128,128,128)] w-auto h-auto input" />
+                                    <!-- 顯示密碼 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- email -->
+                    <div class="flex flex-col w-full h-auto relative">
+                        <div
+                            class=" font-normal text-[12px] leading-none font-BIZUDGothic text-[rgb(51,51,51)] tracking-[0.3px] w-auto h-auto mx-4">
+                            信箱:
+                        </div>
+                    </div>
+                    <div class="flex flex-col bg-neutral-100 rounded-md relative">
+                        <div class="rounded-md w-auto flex justify-between items-center content-start gap-x-2 relative">
+                            <div class="flex flex-col w-full relative min-w-0 ml-4 mr-4">
+                                <div class="flex flex-col w-auto relative">
+                                    <input type="text" placeholder="請輸入信箱" id="new_email" name="member_email"
+                                        class="flex items-end font-normal text-[18px] leading-[1.33] font-Roboto text-[rgb(128,128,128)] w-auto h-auto input" disabled style="background-color: #c5c5c5;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 密碼 -->
+                    <div class="flex flex-col w-full h-auto relative">
+                        <div
+                            class="font-normal text-[12px] leading-none font-BIZUDGothic text-[rgb(51,51,51)] tracking-[0.3px] w-auto h-auto mx-4">
+                            密碼:
+                        </div>
+                    </div>
+                    <div class="flex flex-col bg-neutral-100 rounded-md relative">
+                        <div class="rounded-md w-auto flex justify-between items-center content-start gap-x-2 relative">
+                            <div class="flex flex-col w-full relative min-w-0 ml-4 mr-4">
+                                <div class="flex flex-col w-auto relative">
+                                    <input type="password" placeholder="請輸入密碼" id="confirm_new_password"
+                                        name="member_password"
+                                        class="flex items-end font-normal text-[18px] leading-[1.33] font-Roboto text-[rgb(128,128,128)] w-auto h-auto input" />
+                                    <!-- 顯示密碼 -->
+                                    <button
+                                        class="w-8 h-8 p-0 bg-transparent border-none focus:outline-none absolute top-1/2 transform -translate-y-1/2 right-0 mt-2 mr-3"
+                                        onclick="togglePasswordVisibility()">
+                                        <img class="w-full h-full object-cover" src="./static/icon/simple_eye_icon.png"
+                                            alt="alt text" id="eyeIcon4" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button_img_container">
+                        <button onclick="updateInfo()" class="button_img">
+                            <img src="./static/icon/plane.png" alt="change" id="change" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<script>
+		const urlParameter = new URL(window.location.toLocaleString()).searchParams;
+
+        const currentUser = Cookies.get('storedEmail');
+        const userId = Cookies.get('storedEmail'); 
+		</script>
+
+        <script type="text/javascript">
+            // 初始化 AOS 和 Sticky 插件
+            AOS.init();
+            new Sticky('.sticky-effect');
+
+            // 初始化 Headroom 插件
+            const header = document.querySelector("#header");
+            if (header) {
+                const headroom = new Headroom(header);
+                headroom.init();
+            }
+
+            // 獲取用戶資料
+            function fetchUserData(userId) {
+                console.log(userId);
+                $.ajax({
+                    url: '/SA/api/User.do?Account=' + userId,
+                    type: 'GET',
+                    success: function (data) {
+                        data = JSON.parse(data);
+						console.log(data);
+                        console.log(data['response']['UserList'][0]['Name']);
+                        $('#username').text(data['response']['UserList'][0]['Name']);
+                        document.getElementById("new_name").value = data['response']['UserList'][0]['Name'];
+                        document.getElementById("new_email").value = data['response']['UserList'][0]['Account'];
+                        document.getElementById("confirm_new_password").value = data['response']['UserList'][0]['Password'];
+                        // $('#notesCount').text((data['UserList']).length);
+                    },
+                    error: function (error) {
+                        console.error('獲取用戶資訊時出錯:', error);
+                        $('#username').text('?????');
+                    }
+                });
+            }
+
+            fetchUserData(userId);
+
+            function updateInfo() {
+                var newUsername = $("#new_name").val();
+                var newEmail = $("#new_email").val();
+                var newPassword = $("#confirm_new_password").val();
+                console.log(newUsername);
+                console.log(newEmail);
+                console.log(newPassword);
+                // 密碼格式驗證，至少 8 個字符，包含一個數字和一個字母
+                var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+                // 信箱格式驗證
+                var emailPattern = /^\S+@\S+\.\S+$/;
+
+                // // 檢查新密碼和確認密碼是否匹配
+                // if (newPassword !== $("#confirm_new_password").val()) {
+                //     alert('新密碼和確認密碼不匹配');
+                //     return;
+                // }
+
+                // 檢查新密碼是否與當前密碼相同
+                if (newPassword === Cookies.get('storedPassword')) {
+                    alert('新密碼不能與當前密碼相同');
+                    return;
+                }
+                // 檢查新密碼是否符合格式要求
+                else if (!passwordPattern.test(newPassword)) {
+                    alert('新密碼格式不正確，請確保密碼至少包含 8 個字符，包含一個數字和一個字母。');
+                    return;
+                }
+                // 檢查信箱是否符合格式要求
+                else if (!emailPattern.test(newEmail)) {
+                    alert('信箱格式不正確，請輸入有效的信箱地址。');
+                    return;
+                }
+                // 使用 Ajax 發送 PUT 請求以更新用戶信息
+                else {
+                    $.ajax({
+                        type: "PUT",
+                        url: "/SA/api/User.do",
+                        data: JSON.stringify({
+                            Name: newUsername,
+                            Account: newEmail,
+                            Password: newPassword
+                        }),
+                        contentType: "application/json",
+                        success: function (data) {
+                            alert('用戶信息已更新');
+
+                            // 更新 Cookie 密碼
+                            Cookies.set('storedPassword', newPassword);
+
+                            window.location.href='./UserProfile.html?Account='+newEmail;
+                        },
+                        error: function (error) {
+                            console.error('更新用戶資料時出錯:', error);
+                            alert('無法更新用戶資料');
+                        }
+                    });
+                }
+            }
+        </script>
+
+</body>
+
+<script>
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+        // noti_click++;
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
+    function notificationShow() {
+
+        document.getElementById("notification_panel").classList.toggle("show");
+        noti_click++;
+        if (noti_click > 1) {
+            notificationIndicator.style.display = 'none';
+        }
+        console.log(noti_click)
+    }
+
+    function userFunction() {
+        document.getElementById("function_user").classList.toggle("show");
+    }
+
+    function toUserProfile() {
+        window.location.href = './UserProfile.html?Account=' + currentUser;
+    }
+
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("confirm_new_password");
+        var eyeIcon = document.getElementById("eyeIcon4");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.src = "./static/icon/simple_eye_icon.png"; // Change the source to your hide password icon
+        } else {
+            passwordInput.type === "password";
+            eyeIcon.src = "./static/icon/simple_eye_icon.png"; // Change the source to your show password icon
+        }
+    }
+
+    function logout() {
+        // 清除用戶資料
+        Cookies.remove('storedEmail');
+        Cookies.remove('storedPassword');
+        // 導回登入
+        window.location.href = './index.html';
+    }
+</script>
+
+</html>
