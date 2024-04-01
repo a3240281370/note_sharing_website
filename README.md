@@ -27,9 +27,9 @@
 
 ## 畫面
 
-![範例圖片 1](https://fakeimg.pl/500/)
-![範例圖片 2](https://fakeimg.pl/500/)
-![範例圖片 3](https://fakeimg.pl/500/)
+![範例圖片 1](https://github.com/a3240281370/note_sharing_website/blob/main/example1.jpg)
+![範例圖片 2]()
+![範例圖片 3]()
 
 ## 安裝
 
