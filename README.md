@@ -29,7 +29,7 @@
 
 ![範例圖片 1](https://github.com/a3240281370/note_sharing_website/blob/main/example1.jpg)
 ![範例圖片 2](https://github.com/a3240281370/note_sharing_website/blob/main/example2.jpg)
-![範例圖片 3]()
+![範例圖片 3](https://github.com/a3240281370/note_sharing_website/blob/main/example3.jpg)
 
 ## 安裝
 
