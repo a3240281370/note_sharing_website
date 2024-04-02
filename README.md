@@ -1,6 +1,6 @@
 # note_sharing_website
 
-測試帳號密碼(需要我這邊的虛擬機有開啟才能測試)
+測試帳號密碼
 
 ```bash
 帳號： test1@gmail.com
